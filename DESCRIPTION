@@ -1,10 +1,12 @@
 Package: ansperf
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1
+Title: ANS Performance Analysis Tools
+Version: 0.0.1
 Date: 2015-08-31
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Rainer", "Koelle", "rainer.koelle@eurocontrol.int", role = c("aut", "cre"))
+Description: Tools (e.g. functions, visualisations) for the analysis of ANS Performance.
+  The package is developed in support of establishing a common approach to
+  the analysis of ANS Performance and providing tools to enable stakeholders
+  to perform these analyses on their own data.
+License: CCC
 LazyData: TRUE
