@@ -1,0 +1,90 @@
+---
+title: "Chapter 1"
+output: pdf_document
+bibliography: man-xbib.bib
+---
+
+```
+The ANS Performance Manual / documentation are provided in the hope that it is useful
+to the reader. 
+The information is made available for free to stimulate the discussion on ANS performance.
+
+Every effort has been made to ensure the proper functioning of the functions and their
+effective and accurate documentation. 
+Please report any issues and help to improve this material.
+Alle correspondence should be sent to mailto:rainer.koelle@eurocontrol.int.
+
+The website for this project is under development. An appropriate link will be published
+in due time.
+
+This document was produced using R version 3.2.2 and RStudio version 0.99.467.
+```
+
+# Introduction
+
+## Background
+
+Performing analyses of the performance of air navigation services (ANS) represents a data analysis task.
+This document provides information on how to use an open source software R and the associated front-end software RStudio to analyse ANS performance data.
+
+The document is established as a by-product of the on-going stakeholder consultation on operational ANS performance at airports and international benchmarking activities.
+The overall aim of the project is to make available a consistent set of analysis functions (and capabilities) for analysing and understanding ANS performance.
+
+## Using This Document
+
+This document is a living document and will be adapted in parallel with the on-going developments.
+The document has been written for those with an interest in analysing ANS performance data. 
+
+Interested readers are not required to have prior knowledge of R or RStudio. The document contains code which can be used directly in R/Rstudio by copying and pasting the code directly in R/Rstudio. This may help to facilitate the familiarisation with R and RStudio.
+
+Secondly, this document serves as a reference guide to using the analysis functions developed for the purpose of analysis and analysing performance data.
+
+## Objectives 
+
+The objectives of this document are as follows:
+
+* to support interested parties in analysing ANS performance data;
+
+* to provide tools to reproduce performance analyses based on open-source software (i.e. R and RStudio);
+
+* to stimulate the further development of analysis functions and  associated visualisations; and
+
+* to free-up time to think about the data and foster broader understanding of the results rather than spending time preparing and analysing the data.
+
+This document focusses on analysing ANS performance data. The concepts presented may be extended to other areas and data analysis tasks. The example data allows for the reproduction of the results presented in this document.
+In that respect, this guide is strictly speaking not a "Learning R Tutorial" and cannot cover all aspects of R or RStudio. However, as a guide it will present all scripting concepts to allow to reproduce the results.
+From that perspective, the document may then serve as a departure point for the interested reader to explore additional analysis functions / approaches and supporting R packages.
+
+## Performance Data Analysis
+
+One fundamental paradigm in analysing data is a clear purpose to the analysis.
+
+While Exploratory Data Analysis is extremel valuable, there is no substitute for have a clear aim [@Tukey_1977]. The statistician John Tukey clearly framed this approach:
+
+> The combination of some data and an aching desire for an answer does not ensure that a reasonable answer can be extracted from a given body of data.
+
+Equally, the analysis functions presented in this document cannot overcome data related quality issues. Care should therefore given when analysing data that the data is suitable for that type of analysis.
+
+## Reproducibility
+
+One fundamental aim of this document is to ensure that readers (i.e. users) are able to "reproduce" the examples exactly as intended.
+
+This is a basic feature of the R / RStudio capabilities. In that respect the document can be executed to (re-)produce it.
+This is based on the use of supporting packages (i.e. knitr and pandoc) that allow for the execution of so-called RMarkdown documents.
+
+RMarkdown allows for the blending of text and code. The document therefore represents the output of the combination of text and code run. This process is referred to as "knitting".
+
+Please ensure that you consult the latest version of this document, the example data sets and the associated functions to ensure the exact same output as shown in this document.
+In case of doubt, please contact the author.
+
+## Credits
+
+This document is based on the open-source software R [@RCoreTeam_2013] and RStudio without which knowledge sharing on this level would be impossible.
+
+RMarkdown and dynamic documents are made possible through the work of Y. Xie [-@Xie_2013].
+
+The solutions provided throughout this document are based on packages developed by Wickham.
+
+This document is inspired by the [openair project](http://www.linkhere) and the associated openair manual [@Carslaw_2015].
+
+## References
