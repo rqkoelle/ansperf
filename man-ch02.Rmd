@@ -50,11 +50,12 @@ The installation of R is straightforward.
 R can be downloaded for the common operating systems on CRAN, the [Comprehensive
 R Archive Network]().
 
+![R Download](./figures/R-install-CRAN-download.png)
+
 1. create a folder on your computer where you have write privileges, e.g. 
 `C:/R`.
 1. go to [R-project](http://www.r-project.org) and choose download and select your preferred mirror, or go directly to  [CRAN](https://cran.r-project.org/mirrors.html) and choose your preferred mirror
 1. choose your operating system and select the **base** download, e.g. Download R 3.2.2 for Windows
-![R Download](./figures/R-install-CRAN-download.png)
 1. download the R installer into the folder you crated in step 1
 1. execute the installer and make sure that the version is installed in a sub-folder of your R-folder
 1. it is safe to acknowledge all default settings of the installer    
@@ -80,7 +81,7 @@ The welcome message informs you about the R version and provide pointers to some
 * help() to launch the help pages
 * q() to close R.
 
-If you like, Key in help() to launch the help pages in a browser.
+If you like, key in help() to launch the help pages in a browser.
 
 Now let's use R as a basic calculator.
 
@@ -130,11 +131,14 @@ RStudio provides an integrated development environment for R and offers scriptin
 The installation of RStudio is also straightforward.
 RStudio can be downloaded for the common operating systems from [RStudio](http://www.rstudio.com).
 
-Download the open source desktop edition into a folder on your drive, e.g. 'C:/RStudio', execute the downloaded installer.
+Download the open source desktop edition into a folder on your drive, e.g. 'C:/RStudio' and execute the downloaded installer.
 
 If you do not have adminstrative priviledges on your computer, download the zip/tarball and unzip the file in a folder, e.g. C:/RStudio
 
-1. create a folder on your computer where you have write privileges, e.g. `C:/R`.
+> One can run different versions of RStudio in parallel. For this you may want to create a sub-folder for each version.
+
+To start RStudio, browse to the folder you have installed RStudio into, select the 'bin' sub-folder, and choose 'rstudio' (the application file should come with a nice R ball icon).
+You may want to create a shortcut and place this on your desktop.
 
 ## First Steps in RStudio
 
@@ -142,7 +146,7 @@ After the installation launch RStudio.
 
 RStudio organises the workspace in four areas. 
 If you start RStudio for the first time it is possible that the top left pane is not shown. 
-Just click the new file button in the top bar and select new R Script.
+Just click the new file icon in the top bar and select new R Script as shown in the next figure.
 
 ![RStudio open Script](./figures/RStudio-openRscript.png)
 
@@ -154,22 +158,34 @@ Note: you are able to change the default order of panes in Settings >> Preferenc
 
 ### Editor
 
-The editor is a basic text editor and allows to write R code or Rmd documents.
+The editor is a basic text editor and allows to write R code or Rmd documents. 
+In that respect, the editor supports the documentation of data analyses.
 
-It comes with some value added features like line numbering, code roll-up, etc.
+The editor comes with some value added features like line numbering, code roll-up, etc.
 
-At the top, you will find a series of shortcuts, e.g. save file (disk symbol),
-spell checker (ABC symbol), find/replace (magnifying glass symbol), etc.
+Multiple documents can be opened simultaneously and accessed via their tabs.
 
-Dependent on the file type, this set of shortcuts changes.
+At the top (below the document tabs), you will find a series of shortcuts,
+e.g. save file (disk symbol), spell checker (ABC symbol), find/replace (magnifying glass symbol), etc.
+Dependent on the file type opened, this set of shortcuts changes.
+
+> It is important to understand that the editor is a documentation tool.
+In order to execute R code, it needs to be transferred into the console (= command window). 
+To execute a line or multiple lines of code (documented / archived in the editor), the respective line(s) need(s) to be selected, then click *Run* in the top bar or press CTRL + ENTER.  
+Complete chunks of code or the whole script can be executed via the Chunks dropdown.
 
 ### Console
 
-The console allows to run R commands directly. This supports interactive programming / access to the data, development and testing of functions, graphing, etc.
+The console allows to run R commands directly. 
+This supports interactive programming / access to the data, development and testing of functions, graphing, etc.
 
 The interactive access is one of the key differentiating features of R and supports the development of ideas, testing, etc.
 
-It is important to realise that code fragments from the editor can be pasted here to be executed.
+It is important to realise that code fragments (i.e. single or multiple lines, complete chunks) from the editor can be pasted (or transferred) into the console to be executed.
+
+Commands can be inserted after the command prompt '> '.
+If the command spans multiple lines (or a closing bracket is missing), the prompt for the following lines changes to '+'.
+Commands are executed by pressing ENTER.
 
 ### Environment / History
 
@@ -463,5 +479,153 @@ This structure can be conceptualised as a table of measurements in which
 
 * each row is a measurement
 * each column is a variable of a specific data type.
+
+Data frames can be created by binding a series of vectors that form the columns.
+
+```{r ex15}
+x <- c("Doc", "Dopey", "Bashful", "Grumpy", "Sneezy", "Sleepy", "Happy")
+y <- c(127, 113, 118, 121, 119, 115, 125)
+z <- c(4, 3, 2, 2, 3, 2, 4)
+
+df<- data.frame(x,y,z)   # define df as a data frame of vectors
+df
+```
+
+To address (or extract) an individual vector of a data frame, the 'df$colname' notation is used in base R or one addresses the column by its '"name"':
+
+```{r ex16} 
+df$y            # addresses / extracts the y-vector of df
+mean(df$z)      # calculate the mean of the z-vector
+mean(df[["z"]]) # calculate the mean, address by name
+```
+
+Further data frame rows and columns can be addressed by their position.
+Note: R numbers (i.e. indexes) rows and columns starting with 1 (and not 0 like most programming languages).
+
+```{r ex17}
+df[5,]          # extracts the 5th row
+df[,2]          # extracts the 2nd column
+```
+
+Segmenting a data frame into multiple columns or rows is called *subsetting*. 
+This can be achieved by a combination of the aforementioned techniques.
+For example
+
+```{r ex18}
+df[5:7,]        # subsets row 5 through 7
+df[, 1:2]       # subsets column 1 through 2
+df[, -3]        # columns can also be excluded
+df[5:7, 1:2]    # subsets row 5 through 7 and columns 1 and 2
+```
+
+For data analyses it is typically essentail to subset data based on certain conditions (i.e. conditional subsetting).
+Conditions can be expressed as logical checks on rows.
+If we want to return the complete measurement, the column index is not specified.
+
+```{r ex19}
+df[y >= 119,]
+df[x %in% c("Bashful", "Grumpy"),]
+df[x %in% c("Bashful", "Grumpy"),-2]
+```
+
+## Data Frame Operations with dplyr
+
+[*dplyr*](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) is a R package by Hadley Wickham that provides functions to operate on data frames.  
+
+*dplyr* provides functions for each basic data (frame) manipulation step:
+
+* filter() to select/subset rows
+* select() to select/subset columns
+* mutate() to transform the data set
+* summarise() to calculate summary statistics on the data set
+
+Using the examples above, the following is the dplyr implementation
+
+```{r ex20}
+library(dplyr)   # if not installed run install.packages("dplyr") first!
+select(df, x, z)                          # subset by columns
+filter(df, y >= 119)                      # subset by rows
+filter(df, x %in% c("Bashful", "Grumpy")) # subset by rows
+filter(df, y >= 119                       # subset (conveniently) by
+         , x %in% c("Bashful", "Grumpy")  # multiple criteria
+       )
+```
+
+*mutate()* allows to add new columns (or overwrite existing ones) by applying functions to existing ones.
+In this example, we divide the values of the z column by 2.
+
+```{r ex21}
+df <- mutate(df, new = z / 2)
+df
+```
+
+*summarise()* is an aggregation function. It collapses the data frame into a single row.
+Let's assume we are interested in a summary of our data frame by counting the number of dwarves (i.e. NBR),    
+identifying their average age (AVAGE),   
+counting the number of apples they carry (TOTAP), and   
+check the previous mutation operation by reversing it (CHECK).
+
+```{r ex22}
+summarise( df
+          ,NBR   = n()    # n() is a utility function to count the entries
+          ,AVAGE = mean(y)
+          ,TOTAP = sum(z)
+          ,CHECK = sum(new) * 2
+          )
+```
+
+There are two operations that make dplyr particularly powerful:
+
+* chaining of operations
+* grouped operations
+
+*chaining* is performed by the *pipe-operator*, i.e. '%>%'. In principle, the output of the first operation is piped into the second operation, and so forth.
+
+> Note: for piped operations, one does not need to specify the data frame on which the operation is performed in the subsequent operations.
+
+For example, we can first filter the data frame by rows and then extract the names with select(). Or we calculate the average of the subset.
+
+```{r ex23}
+filter(df, y <= 119) %>% select(x)
+filter(df, y <= 119) %>% summarise(AVAGE = mean(y))
+```
+
+*grouped operations* allow to perform operations on subgroups of a data set.
+In our example, we group the dwarves according to the number of apples (i.e. variable z) and summarise the groups.
+```{r ex24}
+by_apple <- group_by(df, z)
+summarise(by_apple
+          ,NBR   = n()    
+          ,AVAGE = mean(y)
+          ,TOTAP = sum(z)
+          ,CHECK = sum(new) * 2
+          )
+```
+
+
+## Final Words
+
+By no means this short introduction covers all functionality of R (or dplyr).
+The interested reader is encouraged to consult the resources listed.
+There is a huge variety of written material on R and the aspects mentioned here. 
+Additionally, there is an ever increasing number of youtube tutorials.
+
+This document will refine the basic concepts presented in this section throughout the document.
+The basic aim is to enable the reader to perform the analyses for themselves with the provided tools.
+Interested readers may extend these tools. For this a wider understanding (and learning) of R programming might be useful.
+
+One nice about R is that one learns by doing it (i.e. inserting commands in the console). 
+Inevitable this may include mispelled commands, incorrect parameter settings, etc.
+Most of the R error messages are best to be described as **cryptic**.
+And even seasoned R practitionners find them difficult to interpret.
+
+If you encounter such error messages, it is a good strategy to check the spelling and parameter list first. This can be conveniently done with the help pages.
+A further group of errors is related to perform operations on non-permissible data types. For example, calculating the mean over the names of the dwarves result in an error or warning, `r mean(df$x)`.
+If this is not helping than consulting the web with the error will certainly list some stackoverflow discussions.
+This is a helpful resource for trouble shooting.
+
+As this document is fully reproducible, it is ensured that all the code listed works as intended.
+Therefore, all the code should work given that the required libraries are installed. R ensures a certain backward compatibility. Nonetheless, it is possible that potential future changes to certain functions may break the code in this document. 
+In such cases, please contact the author to obtain the latest version of this document, the presented functions, or any information to overcome the dependency constraints of conflicting software versions.
 
 # References
